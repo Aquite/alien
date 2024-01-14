@@ -1,40 +1,32 @@
 import { Outlet, Link } from "react-router-dom";
 
+// sidebar ?
+// header ?
+// Cool looking background?
+// links to different pages:
+/* - roll dice
+   - character sheet ?
+   - rules ?
+*/
+
 export default function Root() {
   return (
-    <>
+    <div id="app">
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <div>
-          <form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-            />
-            <div id="search-spinner" aria-hidden hidden={true} />
-            <div className="sr-only" aria-live="polite"></div>
-          </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <Link to={`contacts/1`}>Your Name</Link>
-            </li>
-            <li>
-              <Link to={`contacts/2`}>Your Friend</Link>
-            </li>
-          </ul>
-        </nav>
+        <h1>I'm a sidebar!</h1>
+        <p>
+          <Link to={"diceroll"}>Roll the dice</Link>
+        </p>
+        <p>
+          <Link to={"charsheet"}>Character Sheet</Link>
+        </p>
       </div>
-      <div id="detail">
+      <div
+        id="main"
+        style={{ color: "white", backgroundColor: "black", height: "100%" }}
+      >
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }

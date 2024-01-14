@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
+import DiceRoll from "./routes/dice-roll";
+import CharacterSheet from "./routes/character-sheet";
 import reportWebVitals from "./reportWebVitals";
 import Contact from "./routes/contact";
 
@@ -14,8 +16,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
+        path: "diceroll",
+        element: <DiceRoll />,
+      },
+      {
+        path: "charsheet",
+        element: <CharacterSheet />,
       },
     ],
   },
