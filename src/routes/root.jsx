@@ -23,7 +23,13 @@ export default function Root() {
       </div>
       <div
         id="main"
-        style={{ color: "white", backgroundColor: "black", height: "100%" }}
+        style={{
+          color: "white",
+          backgroundColor: "black",
+          display: "flex",
+          flexFlow: "column",
+          height: "100%",
+        }}
       >
         <Outlet />
       </div>
