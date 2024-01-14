@@ -1,4 +1,5 @@
 import "./starscape.css";
+import React from "react";
 
 const Starscape = () => {
   const canvasRef = React.useRef(null);
