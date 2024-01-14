@@ -1,4 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
+import Starscape from "./starscape/starscape";
 
 // sidebar ?
 // header ?
@@ -21,16 +22,8 @@ export default function Root() {
           <Link to={"charsheet"}>Character Sheet</Link>
         </p>
       </div>
-      <div
-        id="main"
-        style={{
-          color: "white",
-          backgroundColor: "black",
-          display: "flex",
-          flexFlow: "column",
-          height: "100%",
-        }}
-      >
+      <div>
+        <Starscape />
         <Outlet />
       </div>
     </div>
