@@ -2,11 +2,12 @@ import React, { useState } from "react";
 
 const DiceRoll = () => {
   const [reroll, setReroll] = useState(0);
-  const attribute = 1;
-  const skill = 2;
-  const rolls = attribute + skill;
 
-  let stress = Math.floor(Math.random() * 5) + 5;
+  const [attribute, setAttribute] = useState(3);
+  const [skill, setSkill] = useState(2);
+  const [stress, setStress] = useState(Math.floor(Math.random() * 5) + 5);
+
+  const rolls = attribute + skill;
 
   const roll = () => {
     return Math.floor(Math.random() * 6) + 1;
@@ -17,6 +18,9 @@ const DiceRoll = () => {
   };
 
   const panicResult = () => {
+    const stressValue = roll() + reroll + stress;
+    const panic = roll() + stressValue;
+
     if (panic >= 1 && panic <= 6) {
       return "KEEPING IT TOGETHER. You manage to keep your nerves in check. Barely.";
     }
@@ -55,6 +59,36 @@ const DiceRoll = () => {
   return (
     <div>
       <h1>Dice Roller</h1>
+      <div>
+        <label>
+          Attribute:
+          <input
+            type="number"
+            value={attribute}
+            onChange={(e) => setAttribute(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Skill:
+          <input
+            type="number"
+            value={skill}
+            onChange={(e) => setSkill(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Stress:
+          <input
+            type="number"
+            value={stress}
+            onChange={(e) => setStress(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
       <button onClick={handleReroll}>Reroll</button>
       <p>Rolls: {norm.join(", ")}</p>
       {<p>Sixes: {norm6 + not6}</p>}
