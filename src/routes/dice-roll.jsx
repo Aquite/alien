@@ -1,4 +1,7 @@
+import React, { useState } from "react";
+
 const DiceRoll = () => {
+  const [reroll, setReroll] = useState(0);
   const attribute = 1;
   const skill = 2;
   const rolls = attribute + skill;
@@ -7,6 +10,10 @@ const DiceRoll = () => {
 
   const roll = () => {
     return Math.floor(Math.random() * 6) + 1;
+  };
+
+  const handleReroll = () => {
+    setReroll(roll());
   };
 
   const panicResult = () => {
@@ -48,6 +55,7 @@ const DiceRoll = () => {
   return (
     <div>
       <h1>Dice Roller</h1>
+      <button onClick={handleReroll}>Reroll</button>
       <p>Rolls: {norm.join(", ")}</p>
       {<p>Sixes: {norm6 + not6}</p>}
       <p>Stress rolls: {notNorm.join(", ")}</p>
