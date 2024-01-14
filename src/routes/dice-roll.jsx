@@ -14,12 +14,27 @@ const DiceRoll = () => {
   };
 
   const handleReroll = () => {
+    const newNorm = Array.from({ length: rolls }, () => roll());
+    const newNotNorm = Array.from({ length: stress }, () => roll());
+
+    const newNorm6 = newNorm.filter((result) => result === 6).length;
+    const newNot6 = newNotNorm.filter((result) => result === 6).length;
+    const newNot1 = newNotNorm.filter((result) => result === 1).length;
+
+    const newPanic = roll() + stress;
+
+    // Update state variables with the new values
     setReroll(roll());
+    setNorm(newNorm);
+    setNotNorm(newNotNorm);
+    setNorm6(newNorm6);
+    setNot6(newNot6);
+    setNot1(newNot1);
+    setPanic(newPanic);
   };
 
   const panicResult = () => {
-    const stressValue = roll() + reroll + stress;
-    const panic = roll() + stressValue;
+    console.log(panic);
 
     if (panic >= 1 && panic <= 6) {
       return "KEEPING IT TOGETHER. You manage to keep your nerves in check. Barely.";
@@ -47,14 +62,20 @@ const DiceRoll = () => {
     }
   };
 
-  const norm = Array.from({ length: rolls }, () => roll());
-  const notNorm = Array.from({ length: stress }, () => roll());
-
-  const norm6 = norm.filter((result) => result === 6).length;
-  const not6 = notNorm.filter((result) => result === 6).length;
-  const not1 = notNorm.filter((result) => result === 1).length;
-
-  const panic = roll() + stress;
+  const [norm, setNorm] = useState(Array.from({ length: rolls }, () => roll()));
+  const [notNorm, setNotNorm] = useState(
+    Array.from({ length: stress }, () => roll())
+  );
+  const [norm6, setNorm6] = useState(
+    norm.filter((result) => result === 6).length
+  );
+  const [not6, setNot6] = useState(
+    notNorm.filter((result) => result === 6).length
+  );
+  const [not1, setNot1] = useState(
+    notNorm.filter((result) => result === 1).length
+  );
+  const [panic, setPanic] = useState(roll() + stress);
 
   return (
     <div>
