@@ -3,7 +3,7 @@ const DiceRoll = () => {
   const skill = 2;
   const rolls = attribute + skill;
 
-  let stress = 2;
+  let stress = Math.floor(Math.random() * 5) + 5;
 
   const roll = () => {
     return Math.floor(Math.random() * 6) + 1;
