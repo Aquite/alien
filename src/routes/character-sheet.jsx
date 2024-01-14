@@ -1,4 +1,33 @@
+import React, { useState, useEffect } from "react";
+
+const InputField = ({ label, value, onChange }) => (
+  <li>
+    {label}: <input type="text" value={value} onChange={onChange} />
+  </li>
+);
+
 const CharacterSheet = () => {
+  const initialValues = {
+    strength: localStorage.getItem("strength") || "",
+    agility: localStorage.getItem("agility") || "",
+    wits: localStorage.getItem("wits") || "",
+    empathy: localStorage.getItem("empathy") || "",
+    // More attributes here
+  };
+  const [attributes, setAttributes] = useState(initialValues);
+
+  useEffect(() => {
+    Object.entries(attributes).forEach(([key, value]) => {
+      localStorage.setItem(key, value);
+    });
+  }, [attributes]);
+
+  const handleAttributeChange = (attribute, e) => {
+    setAttributes((prevAttributes) => ({
+      ...prevAttributes,
+      [attribute]: e.target.value,
+    }));
+  };
   return (
     <>
       <h1>Character Sheet</h1>
@@ -16,7 +45,11 @@ const CharacterSheet = () => {
       <h2>Attributes and Skills</h2>
       <ul>
         <li>
-          Strength
+          <InputField
+            label="Strength"
+            value={attributes.strength}
+            onChange={(e) => handleAttributeChange("strength", e)}
+          />
           <ul>
             <li>Heavy Machinery</li>
             <li>Stamina</li>
