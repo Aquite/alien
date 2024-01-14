@@ -91,8 +91,8 @@ const DiceRoll = () => {
       </div>
       <button onClick={handleReroll}>Reroll</button>
       <p>Rolls: {norm.join(", ")}</p>
-      {<p>Sixes: {norm6 + not6}</p>}
       <p>Stress rolls: {notNorm.join(", ")}</p>
+      {<p>Sixes: {norm6 + not6}</p>}
       {<p>Ones: {not1}</p>}
       {not1 > 0 && <p>Panic roll: {panic}</p>}
       {not1 > 0 && <p>{panicResult()}</p>}
