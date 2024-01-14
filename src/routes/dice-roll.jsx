@@ -1,26 +1,50 @@
 import React, { useState } from "react";
+import { Dice, Dice2 } from "./DiceBox/dice-box";
+
+Dice.init().then(() => {
+  // clear dice on click anywhere on the screen
+  document.addEventListener("mousedown", () => {
+    const diceBoxCanvas = document.getElementById("dice-canvas");
+    if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
+      Dice.hide().clear();
+      Dice2.hide().clear();
+    }
+  });
+});
+
+Dice2.init();
 
 const DiceRoll = () => {
+  const [stressResult, setStressResult] = useState();
+  const [normalResult, setNormalResult] = useState();
+  // This method is triggered whenever dice are finished rolling
+  Dice.onRollComplete = (results) => {
+    setNormalResult(results[0].rolls);
+  };
+
+  Dice2.onRollComplete = (results) => {
+    setStressResult(results[0].rolls);
+  };
+
+  // trigger dice roll
+  const rollDice = (normal, stress) => {
+    // trigger the dice roll using the parser
+    Dice.show().roll(normal + "d6");
+    Dice2.show().roll(stress + "d6");
+  };
+
   const [reroll, setReroll] = useState(0);
 
   const [attribute, setAttribute] = useState(3);
   const [skill, setSkill] = useState(2);
   const [stress, setStress] = useState(Math.floor(Math.random() * 5) + 5);
 
-  const rolls = attribute + skill;
-
   const roll = () => {
     return Math.floor(Math.random() * 6) + 1;
   };
-
-  const handleReroll = () => {
-    setReroll(roll());
-  };
+  const panic = roll() + stress;
 
   const panicResult = () => {
-    const stressValue = roll() + reroll + stress;
-    const panic = roll() + stressValue;
-
     if (panic >= 1 && panic <= 6) {
       return "KEEPING IT TOGETHER. You manage to keep your nerves in check. Barely.";
     }
@@ -47,18 +71,20 @@ const DiceRoll = () => {
     }
   };
 
-  const norm = Array.from({ length: rolls }, () => roll());
-  const notNorm = Array.from({ length: stress }, () => roll());
+  let norm6;
+  let not6;
+  let not1;
 
-  const norm6 = norm.filter((result) => result === 6).length;
-  const not6 = notNorm.filter((result) => result === 6).length;
-  const not1 = notNorm.filter((result) => result === 1).length;
-
-  const panic = roll() + stress;
+  if (normalResult && stressResult) {
+    norm6 = normalResult.filter((result) => result.value === 6).length;
+    not6 = stressResult.filter((result) => result.value === 6).length;
+    not1 = stressResult.filter((result) => result.value === 1).length;
+  }
 
   return (
     <div>
       <h1>Dice Roller</h1>
+      <button onClick={() => rollDice(skill + attribute, stress)}>Roll</button>
       <div>
         <label>
           Attribute:
@@ -89,13 +115,14 @@ const DiceRoll = () => {
           />
         </label>
       </div>
-      <button onClick={handleReroll}>Reroll</button>
-      <p>Rolls: {norm.join(", ")}</p>
-      {<p>Sixes: {norm6 + not6}</p>}
-      <p>Stress rolls: {notNorm.join(", ")}</p>
-      {<p>Ones: {not1}</p>}
-      {not1 > 0 && <p>Panic roll: {panic}</p>}
-      {not1 > 0 && <p>{panicResult()}</p>}
+      {normalResult && stressResult && (
+        <>
+          <p>Sixes: {norm6 + not6}</p>
+          <p>Ones: {not1}</p>
+          {not1 > 0 && <p>Panic roll: {panic}</p>}
+          {not1 > 0 && <p>{panicResult()}</p>}
+        </>
+      )}
     </div>
   );
   <>
