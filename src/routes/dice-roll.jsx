@@ -33,8 +33,6 @@ const DiceRoll = () => {
     Dice2.show().roll(stress + "d6");
   };
 
-  const [reroll, setReroll] = useState(0);
-
   const [attribute, setAttribute] = useState(3);
   const [skill, setSkill] = useState(2);
   const [stress, setStress] = useState(Math.floor(Math.random() * 5) + 5);
