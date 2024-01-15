@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import DiceRoll from "./routes/dice-roll";
+import Rules from "./routes/rules";
 import CharacterSheet from "./routes/character-sheet";
 import reportWebVitals from "./reportWebVitals";
-import Contact from "./routes/contact";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "charsheet",
         element: <CharacterSheet />,
+      },
+      {
+        path: "rules",
+        element: <Rules />,
       },
     ],
   },

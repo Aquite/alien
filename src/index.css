@@ -1,12 +1,42 @@
+@font-face {
+  font-family: "Sevastopol";
+  src: local("Sevastopol"),
+    url(./fonts/Sevastopol-Interface.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Eurostile";
+  src: local("Eurostile"), url(./fonts/Eurostile.otf) format("opentype");
+}
+
 body {
   margin: 0;
   font-family: "Consolas";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #aeeefc;
+  color: white;
   font-size: 2rem;
   margin-inline: 20px;
 }
+
+h1 {
+  font-family: "Eurostile";
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-family: "Sevastopol";
+  font-size: 6rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 70px;
+  color: white;
+}
+
+p {
+  font-size: 3rem;
+}
+
 @media only screen and (min-width: 1024px) {
   body {
     margin-inline: calc((100vw - 1024px) / 2);

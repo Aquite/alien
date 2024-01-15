@@ -1,0 +1,30 @@
+.tab {
+  border: 2px solid white;
+  border-radius: 5px;
+  padding-inline: 20px;
+  padding-block: 5px;
+  font-family: Eurostile;
+  line-height: 60px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  transition: ease-in 0.25s;
+}
+
+.tab:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.selected {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+header {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: -30px;
+}

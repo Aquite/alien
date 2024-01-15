@@ -1,2 +1,0 @@
-body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#aeeefc;font-family:Consolas;font-size:2rem;margin:0;margin-inline:20px}@media only screen and (min-width:1024px){body{margin-inline:calc(50vw - 512px)}}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}#dice-box,#dice-box canvas{background-color:initial;height:100%;pointer-events:none;position:fixed;width:100%;z-index:100}canvas{background:#0f0f0f;height:100vh;inset:0;position:fixed;width:100vw;z-index:-1}
-/*# sourceMappingURL=main.d9ed456e.css.map*/
