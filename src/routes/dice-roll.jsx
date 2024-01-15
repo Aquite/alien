@@ -1,36 +1,58 @@
 import React, { useState } from "react";
 import { Dice, Dice2 } from "./DiceBox/dice-box";
+import BoxControls from "@3d-dice/dice-ui/src/boxControls";
 
-Dice.init().then(() => {
+Dice.init().then(async (world) => {
   // clear dice on click anywhere on the screen
   document.addEventListener("mousedown", () => {
     const diceBoxCanvas = document.getElementById("dice-canvas");
     if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
       Dice.hide().clear();
-      Dice2.hide().clear();
     }
   });
 });
 
-Dice2.init();
+Dice.updateConfig({
+  angularDamping: 0.4,
+  delay: 10,
+  enableShadows: true,
+  friction: 0.8,
+  gravity: 1,
+  lightIntensity: 1,
+  linearDamping: 0.5,
+  mass: 1,
+  restitution: 0,
+  scale: 5,
+  settleTimeout: 5000,
+  shadowTransparency: 0.8,
+  spinForce: 6,
+  startingHeight: 8,
+  suspendSimulation: false,
+  theme: "rust",
+  themeColor: "#aa4f4a",
+  throwForce: 5,
+});
 
 const DiceRoll = () => {
   const [stressResult, setStressResult] = useState();
   const [normalResult, setNormalResult] = useState();
   // This method is triggered whenever dice are finished rolling
   Dice.onRollComplete = (results) => {
+    console.log(results);
     setNormalResult(results[0].rolls);
-  };
-
-  Dice2.onRollComplete = (results) => {
-    setStressResult(results[0].rolls);
+    results[1] && setStressResult(results[1].rolls);
   };
 
   // trigger dice roll
   const rollDice = (normal, stress) => {
     // trigger the dice roll using the parser
-    Dice.show().roll(normal + "d6");
-    Dice2.show().roll(stress + "d6");
+    Dice.show().roll(normal + "d6", {
+      theme: "default",
+      themeColor: "#000000",
+    });
+    if (stress > 0) {
+      Dice.show().add(stress + "d6", { theme: "rust", themeColor: "#fcd114" });
+    }
   };
 
   const [attribute, setAttribute] = useState(3);
@@ -73,8 +95,11 @@ const DiceRoll = () => {
   let not6;
   let not1;
 
-  if (normalResult && stressResult) {
+  if (normalResult) {
     norm6 = normalResult.filter((result) => result.value === 6).length;
+  }
+
+  if (stressResult) {
     not6 = stressResult.filter((result) => result.value === 6).length;
     not1 = stressResult.filter((result) => result.value === 1).length;
   }
@@ -113,12 +138,16 @@ const DiceRoll = () => {
           />
         </label>
       </div>
-      {normalResult && stressResult && (
+      {normalResult && stressResult ? (
         <>
           <p>Sixes: {norm6 + not6}</p>
           <p>Ones: {not1}</p>
           {not1 > 0 && <p>Panic roll: {panic}</p>}
           {not1 > 0 && <p>{panicResult()}</p>}
+        </>
+      ) : (
+        <>
+          <p>Sixes: {norm6}</p>
         </>
       )}
     </div>

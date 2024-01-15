@@ -4,7 +4,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #aeeefc;
-  margin-left: 50px;
+  font-size: 2rem;
+  margin-inline: 20px;
+}
+@media only screen and (min-width: 1024px) {
+  body {
+    margin-inline: calc((100vw - 1024px) / 2);
+  }
 }
 
 code {
