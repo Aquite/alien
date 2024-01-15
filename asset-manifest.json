@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/alien/static/css/main.d9ed456e.css",
-    "main.js": "/alien/static/js/main.e46f9356.js",
+    "main.js": "/alien/static/js/main.e926c8a4.js",
     "static/js/93.7a692184.chunk.js": "/alien/static/js/93.7a692184.chunk.js",
     "static/js/598.56a71c3b.chunk.js": "/alien/static/js/598.56a71c3b.chunk.js",
     "static/js/787.edd4f9ee.chunk.js": "/alien/static/js/787.edd4f9ee.chunk.js",
     "index.html": "/alien/index.html",
     "main.d9ed456e.css.map": "/alien/static/css/main.d9ed456e.css.map",
-    "main.e46f9356.js.map": "/alien/static/js/main.e46f9356.js.map",
+    "main.e926c8a4.js.map": "/alien/static/js/main.e926c8a4.js.map",
     "93.7a692184.chunk.js.map": "/alien/static/js/93.7a692184.chunk.js.map",
     "598.56a71c3b.chunk.js.map": "/alien/static/js/598.56a71c3b.chunk.js.map",
     "787.edd4f9ee.chunk.js.map": "/alien/static/js/787.edd4f9ee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9ed456e.css",
-    "static/js/main.e46f9356.js"
+    "static/js/main.e926c8a4.js"
   ]
 }
