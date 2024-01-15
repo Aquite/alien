@@ -1,6 +1,6 @@
 import "./starscape.css";
 import React from "react";
-import gsap from "https://cdn.skypack.dev/gsap";
+import gsap from "gsap";
 
 const Starscape = ({
   densityRatio = 0.5,

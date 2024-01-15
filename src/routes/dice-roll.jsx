@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Dice, Dice2 } from "./DiceBox/dice-box";
-import BoxControls from "@3d-dice/dice-ui/src/boxControls";
+import { Dice } from "./DiceBox/dice-box";
 
 Dice.init().then(async (world) => {
   // clear dice on click anywhere on the screen
