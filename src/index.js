@@ -9,7 +9,7 @@ import CharacterSheet from "./routes/character-sheet";
 import reportWebVitals from "./reportWebVitals";
 import Contact from "./routes/contact";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
