@@ -1,6 +1,7 @@
 {
   "name": "alien",
   "version": "0.1.0",
+  "homepage": "https://aquite.github.io/alien",
   "private": false,
   "dependencies": {
     "@3d-dice/dice-box": "^1.0.10",
