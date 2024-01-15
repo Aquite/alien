@@ -1,7 +1,7 @@
 {
   "name": "alien",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@3d-dice/dice-box": "^1.0.10",
     "@3d-dice/dice-ui": "^0.4.3",
