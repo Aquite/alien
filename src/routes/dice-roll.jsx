@@ -60,6 +60,7 @@ const DiceRoll = () => {
   const [attribute, setAttribute] = useState(3);
   const [skill, setSkill] = useState(2);
   const [stress, setStress] = useState(Math.floor(Math.random() * 5) + 5);
+  const [mod, setMod] = useState(0);
 
   const roll = () => {
     return Math.floor(Math.random() * 6) + 1;
@@ -95,7 +96,7 @@ const DiceRoll = () => {
 
   let norm6;
   let not6 = 0;
-  let not1;
+  let not1 = 0;
 
   if (normalResult) {
     norm6 = normalResult.filter((result) => result.value === 6).length;
@@ -107,20 +108,23 @@ const DiceRoll = () => {
   }
 
   return (
-    <div>
+    <div style={{ minHeight: "160vh" }}>
       <h1>Dice Roller</h1>
       <p>
-        You need at least one <Icon type="success" /> to succeed on your roll.
+        You need at least one <Icon type="success" /> (six) to succeed on your
+        roll.
       </p>
       <p>
         If any of your stress dice land on <Icon type="fail" />, then you must
         make a Panic roll and could risk panicking.
       </p>
-      <button onClick={() => rollDice(skill + attribute, stress)}>Roll</button>
+
       <div>
         <label>Attribute:</label>
         <input
           type="number"
+          min="1"
+          max="5"
           value={attribute}
           onChange={(e) => setAttribute(parseInt(e.target.value))}
         />
@@ -129,6 +133,8 @@ const DiceRoll = () => {
         <label>Skill:</label>
         <input
           type="number"
+          min="0"
+          max="5"
           value={skill}
           onChange={(e) => setSkill(parseInt(e.target.value))}
         />
@@ -137,10 +143,24 @@ const DiceRoll = () => {
         <label>Stress:</label>
         <input
           type="number"
+          min="0"
           value={stress}
           onChange={(e) => setStress(parseInt(e.target.value))}
         />
       </div>
+      <div>
+        <label>Modifier:</label>
+        <input
+          type="number"
+          min="-10"
+          max="10"
+          value={mod}
+          onChange={(e) => setMod(parseInt(e.target.value))}
+        />
+      </div>
+      <button onClick={() => rollDice(skill + attribute + mod, stress)}>
+        Roll
+      </button>
       {normalResult && (
         <>
           <h1 style={{ fontSize: "10rem" }}>

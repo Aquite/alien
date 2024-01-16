@@ -14,6 +14,11 @@
   src: local("VT323"), url(./fonts/VT323-Regular.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "5by7";
+  src: local("5by7"), url(./fonts/5by7regular.ttf) format("truetype");
+}
+
 body {
   margin: 0;
   font-family: "Consolas";
@@ -105,4 +110,46 @@ code {
     #33ff00 3px,
     #33ff00 4px
   );
+}
+
+input[type="number"] {
+  color: #ffb000;
+  background: transparent;
+  font-family: Sevastopol;
+  font-size: 5rem;
+  margin-left: 10px;
+  padding-left: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 5rem;
+  text-shadow: 0 0 5px#ffb0006f;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffb000 0,
+    #ffb000 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #ffb000 3px,
+    #ffb000 4px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+
+input:focus {
+  background-color: rgb(83, 83, 83);
+  outline: none !important;
 }
