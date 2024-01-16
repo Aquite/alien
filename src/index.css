@@ -9,6 +9,11 @@
   src: local("Eurostile"), url(./fonts/Eurostile.otf) format("opentype");
 }
 
+@font-face {
+  font-family: "VT323";
+  src: local("VT323"), url(./fonts/VT323-Regular.ttf) format("truetype");
+}
+
 body {
   margin: 0;
   font-family: "Consolas";
@@ -33,8 +38,25 @@ h2 {
   color: white;
 }
 
-p {
-  font-size: 3rem;
+p,
+label,
+h2,
+li {
+  font-size: 3.5rem;
+  font-family: "VT323";
+  color: #33ff00;
+  text-shadow: 0 0 5px#00ff336f;
+  background: repeating-linear-gradient(
+    to bottom,
+    #33ff00 0,
+    #33ff00 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #33ff00 3px,
+    #33ff00 4px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -56,4 +78,31 @@ code {
   width: 100%;
   height: 100%;
   background-color: transparent;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  filter: invert(67%) sepia(14%) saturate(3993%) hue-rotate(61deg)
+    brightness(107%) contrast(124%) drop-shadow(0 0 2px #00ff33);
+  z-index: -1;
+  -webkit-mask-image: repeating-linear-gradient(
+    to bottom,
+    #33ff00 0,
+    #33ff00 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #33ff00 3px,
+    #33ff00 4px
+  );
+  mask-image: repeating-linear-gradient(
+    to bottom,
+    #33ff00 0,
+    #33ff00 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #33ff00 3px,
+    #33ff00 4px
+  );
 }

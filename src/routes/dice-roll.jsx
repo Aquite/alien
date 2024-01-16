@@ -44,6 +44,9 @@ const DiceRoll = () => {
 
   // trigger dice roll
   const rollDice = (normal, stress) => {
+    // clear last roll
+    setStressResult();
+    setNormalResult();
     // trigger the dice roll using the parser
     Dice.show().roll(normal + "d6", {
       theme: "default",
@@ -91,7 +94,7 @@ const DiceRoll = () => {
   };
 
   let norm6;
-  let not6;
+  let not6 = 0;
   let not1;
 
   if (normalResult) {
@@ -106,6 +109,13 @@ const DiceRoll = () => {
   return (
     <div>
       <h1>Dice Roller</h1>
+      <p>
+        You need at least one <Icon type="success" /> to succeed on your roll.
+      </p>
+      <p>
+        If any of your stress dice land on <Icon type="fail" />, then you must
+        make a Panic roll and could risk panicking.
+      </p>
       <button onClick={() => rollDice(skill + attribute, stress)}>Roll</button>
       <div>
         <label>
@@ -137,16 +147,18 @@ const DiceRoll = () => {
           />
         </label>
       </div>
-      {normalResult && stressResult ? (
+      {normalResult && (
         <>
-          <p>Sixes: {norm6 + not6}</p>
-          <p>Ones: {not1}</p>
+          <h1 style={{ fontSize: "10rem" }}>
+            {[...Array(norm6 + not6)].map(() => {
+              return <Icon type="success" />;
+            })}
+            {[...Array(not1)].map(() => {
+              return <Icon type="fail" />;
+            })}
+          </h1>
           {not1 > 0 && <p>Panic roll: {panic}</p>}
           {not1 > 0 && <p>{panicResult()}</p>}
-        </>
-      ) : (
-        <>
-          <p>Sixes: {norm6}</p>
         </>
       )}
     </div>
@@ -164,6 +176,10 @@ const DiceRoll = () => {
     and 1 on a stress die = PANIC CHECK!!!!
       */}
   </>;
+};
+
+const Icon = ({ type }) => {
+  return <img className="icon" src={type + ".png"} alt={type} />;
 };
 
 export default DiceRoll;
