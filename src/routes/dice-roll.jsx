@@ -118,34 +118,28 @@ const DiceRoll = () => {
       </p>
       <button onClick={() => rollDice(skill + attribute, stress)}>Roll</button>
       <div>
-        <label>
-          Attribute:
-          <input
-            type="number"
-            value={attribute}
-            onChange={(e) => setAttribute(parseInt(e.target.value))}
-          />
-        </label>
+        <label>Attribute:</label>
+        <input
+          type="number"
+          value={attribute}
+          onChange={(e) => setAttribute(parseInt(e.target.value))}
+        />
       </div>
       <div>
-        <label>
-          Skill:
-          <input
-            type="number"
-            value={skill}
-            onChange={(e) => setSkill(parseInt(e.target.value))}
-          />
-        </label>
+        <label>Skill:</label>
+        <input
+          type="number"
+          value={skill}
+          onChange={(e) => setSkill(parseInt(e.target.value))}
+        />
       </div>
       <div>
-        <label>
-          Stress:
-          <input
-            type="number"
-            value={stress}
-            onChange={(e) => setStress(parseInt(e.target.value))}
-          />
-        </label>
+        <label>Stress:</label>
+        <input
+          type="number"
+          value={stress}
+          onChange={(e) => setStress(parseInt(e.target.value))}
+        />
       </div>
       {normalResult && (
         <>
