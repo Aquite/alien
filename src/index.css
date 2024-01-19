@@ -153,3 +153,39 @@ input:focus {
   background-color: rgb(83, 83, 83);
   outline: none !important;
 }
+
+.Tbutton {
+  border: 5px solid #ffb000;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-inline: 10px;
+  justify-content: center;
+  font-size: 5rem;
+  font-family: "5by7";
+  color: #ffb000;
+  text-shadow: 0 0 10px#ffb0006f;
+  -webkit-mask-image: repeating-linear-gradient(
+    to bottom,
+    #ffb000 0,
+    #ffb000 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #ffb000 3px,
+    #ffb000 4px
+  );
+  mask-image: repeating-linear-gradient(
+    to bottom,
+    #ffb000 0,
+    #ffb000 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #ffb000 3px,
+    #ffb000 4px
+  );
+  transition: 0.1s ease-in;
+}
+
+.Tbutton:hover {
+  cursor: pointer;
+  filter: drop-shadow(3px 3px 4px #ffb0006f);
+}

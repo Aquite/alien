@@ -42,6 +42,12 @@ const DiceRoll = () => {
     results[1] && setStressResult(results[1].rolls);
   };
 
+  // onClick handler for dice roll
+  const handleRoll = (e, normal, stress) => {
+    e.preventDefault();
+    rollDice(normal, stress);
+  };
+
   // trigger dice roll
   const rollDice = (normal, stress) => {
     // clear last roll
@@ -158,12 +164,18 @@ const DiceRoll = () => {
           onChange={(e) => setMod(parseInt(e.target.value))}
         />
       </div>
-      <button onClick={() => rollDice(skill + attribute + mod, stress)}>
-        Roll
-      </button>
+      <div style={{ marginTop: "40px", textAlign: "center" }}>
+        <span
+          className="Tbutton"
+          onClick={(e) => handleRoll(e, skill + attribute + mod, stress)}
+        >
+          Roll
+        </span>
+      </div>
+
       {normalResult && (
         <>
-          <h1 style={{ fontSize: "10rem" }}>
+          <h1 style={{ fontSize: "10rem", marginBlock: "0px" }}>
             {[...Array(norm6 + not6)].map(() => {
               return <Icon type="success" />;
             })}
@@ -177,19 +189,6 @@ const DiceRoll = () => {
       )}
     </div>
   );
-  <>
-    {/* Dice rolling -
-      # of d6 for skill dice
-        - attribute level
-        - skill level
-      # of d6 for stress dice
-        - stress level
-    then we roll:
-    any 6 = win
-    # of six more than one = bonuses
-    and 1 on a stress die = PANIC CHECK!!!!
-      */}
-  </>;
 };
 
 const Icon = ({ type }) => {

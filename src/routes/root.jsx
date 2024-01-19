@@ -1,6 +1,7 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Starscape from "./starscape/starscape";
 import Tab from "../components/tab";
+import React from "react";
 
 // header ?
 // Cool looking background?
