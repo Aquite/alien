@@ -35,7 +35,9 @@ Dice.updateConfig({
 const DiceRoll = () => {
   const [stressResult, setStressResult] = useState();
   const [normalResult, setNormalResult] = useState();
+  const [use3DDice, setUse3DDice] = useState(true);
   // This method is triggered whenever dice are finished rolling
+
   Dice.onRollComplete = (results) => {
     console.log(results);
     setNormalResult(results[0].rolls);
@@ -54,12 +56,31 @@ const DiceRoll = () => {
     setStressResult();
     setNormalResult();
     // trigger the dice roll using the parser
-    Dice.show().roll(normal + "d6", {
-      theme: "default",
-      themeColor: "#000000",
-    });
-    if (stress > 0) {
-      Dice.show().add(stress + "d6", { theme: "rust", themeColor: "#fcd114" });
+
+    if (use3DDice) {
+      Dice.updateConfig({ settleTimeout: 5000 });
+      Dice.show().roll(normal + "d6", {
+        theme: "default",
+        themeColor: "#000000",
+      });
+      if (stress > 0) {
+        Dice.show().add(stress + "d6", {
+          theme: "rust",
+          themeColor: "#fcd114",
+        });
+      }
+    } else {
+      Dice.updateConfig({ settleTimeout: 0 });
+      Dice.roll(normal + "d6", {
+        theme: "default",
+        themeColor: "#000000",
+      });
+      if (stress > 0) {
+        Dice.add(stress + "d6", {
+          theme: "rust",
+          themeColor: "#fcd114",
+        });
+      }
     }
   };
 
@@ -124,7 +145,14 @@ const DiceRoll = () => {
         If any of your stress dice land on <Icon type="fail" />, then you must
         make a Panic roll and could risk panicking.
       </p>
-
+      <div>
+        <label>Use 3D Dice:</label>
+        <input
+          type="checkbox"
+          checked={use3DDice}
+          onChange={() => setUse3DDice((prev) => !prev)}
+        />
+      </div>
       <div>
         <label>Attribute:</label>
         <input
