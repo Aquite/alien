@@ -114,7 +114,7 @@ const DiceRoll = () => {
   }
 
   return (
-    <div style={{ minHeight: "160vh" }}>
+    <div className="dice" style={{ minHeight: "160vh" }}>
       <h1>Dice Roller</h1>
       <p>
         You need at least one <Icon type="success" /> (six) to succeed on your

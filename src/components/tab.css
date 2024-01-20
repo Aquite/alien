@@ -2,14 +2,19 @@
   border: 2px solid white;
   border-radius: 5px;
   padding-inline: 20px;
-  padding-block: 5px;
+  padding-block: 0.2vw;
   font-family: Eurostile;
   line-height: 60px;
   color: white;
   text-decoration: none;
   text-align: center;
   transition: ease-in 0.25s;
-  margin-inline: 10px;
+  margin-inline: 5px;
+  display: inline-block;
+}
+
+.tab span {
+  white-space: nowrap;
 }
 
 .tab:hover {
@@ -27,5 +32,4 @@
 header {
   text-align: center;
   margin-top: 10px;
-  margin-bottom: -30px;
 }

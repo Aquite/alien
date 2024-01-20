@@ -23,7 +23,7 @@ body {
   margin: 0;
   font-family: "Consolas";
   color: white;
-  font-size: 2rem;
+  font-size: calc(1em + 1vw);
   margin-inline: 20px;
 }
 
@@ -32,9 +32,10 @@ h1 {
   color: white;
   text-transform: uppercase;
   text-align: center;
+  font-size: min(5rem, 6vw);
 }
 
-h2 {
+.dice h2 {
   font-family: "Sevastopol";
   font-size: 6rem;
   text-transform: uppercase;
@@ -43,11 +44,10 @@ h2 {
   color: white;
 }
 
-p,
-label,
-h2,
-li {
-  font-size: 3.5rem;
+.dice p,
+.dice label,
+.dice h2 {
+  font-size: min(3.5rem, 6vw);
   font-family: "VT323";
   color: #33ff00;
   text-shadow: 0 0 5px#00ff336f;
@@ -70,11 +70,6 @@ li {
   }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 #dice-box,
 #dice-box canvas {
   position: fixed;
@@ -85,7 +80,7 @@ code {
   background-color: transparent;
 }
 
-.icon {
+.dice .icon {
   width: 1em;
   height: 1em;
   vertical-align: middle;
@@ -112,17 +107,16 @@ code {
   );
 }
 
-input[type="number"] {
+.dice input[type="number"] {
   color: #ffb000;
   background: transparent;
   font-family: Sevastopol;
-  font-size: 5rem;
+  font-size: min(5rem, 7vw);
   margin-left: 10px;
   padding-left: 10px;
   border: none;
   border-radius: 10px;
   width: 100px;
-  height: 5rem;
   text-shadow: 0 0 5px#ffb0006f;
   background: repeating-linear-gradient(
     to bottom,
@@ -137,19 +131,19 @@ input[type="number"] {
   -webkit-text-fill-color: transparent;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+.dice input[type="number"]::-webkit-inner-spin-button,
+.dice input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type="number"] {
+.dice input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
   margin: 0;
 }
 
-input:focus {
+.dice input:focus {
   background-color: rgb(83, 83, 83);
   outline: none !important;
 }
