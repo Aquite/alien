@@ -71,14 +71,23 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
     );
   };
 
-  const TextInput = (name) => {
+  const TextInput = (name, width) => {
     const id = toCamelCase(name);
     return (
       <div>
         <label>{name}: </label>
         <input
+          type="text"
           label={name}
           value={sheet[id]}
+          style={{
+            backgroundColor: "transparent",
+            color: "#ffb000",
+            marginLeft: "5px",
+            outline: "none",
+            width: "100%",
+            border: "none",
+          }}
           onChange={(e) => handleTextChange(id, e)}
         />
       </div>
@@ -93,6 +102,14 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
         <textarea
           label={name}
           value={sheet[id]}
+          style={{
+            backgroundColor: "transparent",
+            color: "#ffb000",
+            marginLeft: "5px",
+            outline: "none",
+            width: "100%",
+            border: "none",
+          }}
           onChange={(e) => handleTextChange(id, e)}
         />
       </div>
@@ -102,17 +119,26 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
   return (
     <div>
       <h1>Character Sheet</h1>
-      <Container>
+      <Container className="sheet">
         <Row>
-          <Col>Name</Col>
-          <Col>Rank</Col>
-          <Col>Career</Col>
+          <Col>{TextInput("Name", 86)}</Col>
+          <Col>{TextInput("Career", 62)}</Col>
         </Row>
         <Row>
-          <Col>Appearance</Col>
-          <Col>Personality</Col>
+          <Col>{TextAreaInput("Appearance")}</Col>
+          <Col>{TextAreaInput("Personality")}</Col>
         </Row>
-        <Row></Row>
+        <Row>
+          <Col>{TextAreaInput("Personal Agenda")}</Col>
+          <Col className="rowHolder">
+            <Row>
+              <Col>{TextInput("Buddy", 78)}</Col>
+            </Row>
+            <Row>
+              <Col>{TextInput("Rival", 78)}</Col>
+            </Row>
+          </Col>
+        </Row>
         <Row>
           <Col>Attributes</Col>
         </Row>
@@ -128,10 +154,7 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
       {TextInput("Name")}
       {TextInput("Rank")}
       {TextInput("Career")}
-      {TextAreaInput("Appearance")}
-      {TextAreaInput("Personality")}
-      {TextAreaInput("Personal Agenda")}
-      {TextInput("Buddy")}
+
       {TextInput("Rival")}
       {TextAreaInput("Talents")}
       <h2>Health and Wellness</h2>

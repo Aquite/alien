@@ -44,13 +44,12 @@ h1 {
   color: white;
 }
 
-.dice p,
-.dice label,
-.dice h2 {
+p,
+label,
+h2 {
   font-size: min(3.5rem, 6vw);
   font-family: "VT323";
   color: #33ff00;
-  text-shadow: 0 0 5px#00ff336f;
   background: repeating-linear-gradient(
     to bottom,
     #33ff00 0,
@@ -62,6 +61,7 @@ h1 {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 0px 6px #00ff338d);
 }
 
 @media only screen and (min-width: 1024px) {
@@ -85,7 +85,7 @@ h1 {
   height: 1em;
   vertical-align: middle;
   filter: invert(67%) sepia(14%) saturate(3993%) hue-rotate(61deg)
-    brightness(107%) contrast(124%) drop-shadow(0 0 2px #00ff33);
+    brightness(107%) contrast(124%);
   z-index: -1;
   -webkit-mask-image: repeating-linear-gradient(
     to bottom,
@@ -107,7 +107,12 @@ h1 {
   );
 }
 
-.dice input[type="number"] {
+.dice h1 .icon {
+  filter: invert(67%) sepia(14%) saturate(3993%) hue-rotate(61deg)
+    brightness(107%) contrast(124%) drop-shadow(0px 0px 10px #00ff3388);
+}
+
+input[type="number"] {
   color: #ffb000;
   background: transparent;
   font-family: Sevastopol;
@@ -131,19 +136,19 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-.dice input[type="number"]::-webkit-inner-spin-button,
-.dice input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.dice input[type="number"] {
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
   margin: 0;
 }
 
-.dice input:focus {
+input:focus {
   background-color: rgb(83, 83, 83);
   outline: none !important;
 }
@@ -182,4 +187,33 @@ h1 {
 .Tbutton:hover {
   cursor: pointer;
   filter: drop-shadow(3px 3px 4px #ffb0006f);
+}
+
+.col-8,
+.col:not(.rowHolder) {
+  border: 3px double #33ff008f;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+input[type="text"],
+textarea {
+  line-height: 1;
+  color: #ffb000;
+  background: transparent;
+  font-family: VT323;
+  font-size: min(2.5rem, 7vw);
+  border: none;
+  text-shadow: 0 0 5px#ffb0006f;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffb000 0,
+    #ffb000 1px,
+    rgba(0, 0, 0, 0.071) 2px,
+    rgba(0, 0, 0, 0.071) 3px,
+    #ffb000 3px,
+    #ffb000 4px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
