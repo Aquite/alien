@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "./character-sheet.css";
 
 const CharacterSheet = ({ sheet, setSheet, setState }) => {
   const toCamelCase = (value) => {
@@ -47,6 +48,17 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
           label={name}
           min="1"
           max="5"
+          style={{
+            fontFamily: "TGO",
+            backgroundColor: "transparent",
+            color: "#ffb000",
+            outline: "none",
+            width: "100%",
+            border: "none",
+            textAlign: "center",
+            fontSize: "6rem",
+            marginBlock: "-30px",
+          }}
           value={sheet[id]}
           onChange={(e) => handleNumberChange(id, e)}
         />
@@ -64,6 +76,17 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
           label={name}
           min="0"
           max="5"
+          style={{
+            fontFamily: "TGO",
+            backgroundColor: "transparent",
+            color: "#ffb000",
+            outline: "none",
+            width: "100%",
+            border: "none",
+            textAlign: "center",
+            fontSize: "6rem",
+            marginBlock: "-30px",
+          }}
           value={sheet[id]}
           onChange={(e) => handleNumberChange(id, e)}
         />
@@ -140,22 +163,193 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
           </Col>
         </Row>
         <Row>
-          <Col>Attributes</Col>
+          <Col className="orange">{SkillInput("Strength")}</Col>
+          <Col className="purple">{SkillInput("Agility")}</Col>
+          <Col className="blue">{SkillInput("Wits")}</Col>
+          <Col className="pink">{SkillInput("Empathy")}</Col>
         </Row>
         <Row>
-          <Col>Strength</Col>
-          <Col>Agility</Col>
-          <Col>Wits</Col>
-          <Col>Empathy</Col>
+          <Col className="orange">
+            <Container>
+              <Row>{AbilityInput("Close Combat")}</Row>
+              <Row>{AbilityInput("Heavy Machinery")}</Row>
+              <Row>{AbilityInput("Stamina")}</Row>
+            </Container>
+          </Col>
+          <Col className="purple">
+            <Container>
+              <Row>{AbilityInput("Mobility")}</Row>
+              <Row>{AbilityInput("Piloting")}</Row>
+              <Row>{AbilityInput("Ranged Combat")}</Row>
+            </Container>
+          </Col>
+          <Col className="blue">
+            <Container>
+              <Row>{AbilityInput("Comtech")}</Row>
+              <Row>{AbilityInput("Observation")}</Row>
+              <Row>{AbilityInput("Survival")}</Row>
+            </Container>
+          </Col>
+          <Col className="pink">
+            <Container>
+              <Row>{AbilityInput("Command")}</Row>
+              <Row>{AbilityInput("Manipulation")}</Row>
+              <Row>{AbilityInput("Medical Aid")}</Row>
+            </Container>
+          </Col>
+        </Row>
+        <Row>
+          <Container className="weapons" style={{ textAlign: "center" }}>
+            <label>Weapons</label>
+            <Row className="weaponsLabels" style={{ marginBottom: "15px" }}>
+              <Col xs={3}>
+                <label>Name</label>
+              </Col>
+              <Col xs={1}>
+                <label>Bonus</label>
+              </Col>
+              <Col xs={1}>
+                <label>DMG</label>
+              </Col>
+              <Col xs={2}>
+                <label>Range</label>
+              </Col>
+              <Col xs={4}>
+                <label>Notes</label>
+              </Col>
+              <Col xs={1}>
+                <label>WT</label>
+              </Col>
+            </Row>
+            {sheet.weapons.map((weapon, idx) => {
+              return (
+                <>
+                  <Row>
+                    <Col xs={3}>
+                      <input
+                        label="Name"
+                        value={weapon.name}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "#ffb000",
+                          outline: "none",
+                          width: "100%",
+                          border: "none",
+                          textAlign: "center",
+                        }}
+                        onChange={(e) =>
+                          handleSheetArrayChange("weapons", idx, "name", e)
+                        }
+                      />
+                    </Col>
+                    <Col xs={1}>
+                      <input
+                        label="Bonus"
+                        value={weapon.bonus}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "#ffb000",
+                          outline: "none",
+                          width: "100%",
+                          border: "none",
+                          textAlign: "center",
+                        }}
+                        onChange={(e) =>
+                          handleSheetArrayChange("weapons", idx, "bonus", e)
+                        }
+                      />
+                    </Col>
+                    <Col xs={1}>
+                      <input
+                        type="number"
+                        label="Damage"
+                        value={weapon.damage}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "#ffb000",
+                          outline: "none",
+                          width: "100%",
+                          border: "none",
+                          textAlign: "center",
+                        }}
+                        onChange={(e) =>
+                          handleSheetArrayChange("weapons", idx, "damage", e)
+                        }
+                      />
+                    </Col>
+                    <Col xs={2}>
+                      <input
+                        label="Range"
+                        value={weapon.range}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "#ffb000",
+                          outline: "none",
+                          width: "100%",
+                          border: "none",
+                          textAlign: "center",
+                        }}
+                        onChange={(e) =>
+                          handleSheetArrayChange("weapons", idx, "range", e)
+                        }
+                      />
+                    </Col>
+                    <Col xs={4}>
+                      <input
+                        label="Notes"
+                        value={weapon.notes}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "#ffb000",
+                          outline: "none",
+                          width: "100%",
+                          border: "none",
+                          textAlign: "center",
+                        }}
+                        onChange={(e) =>
+                          handleSheetArrayChange("weapons", idx, "notes", e)
+                        }
+                      />
+                    </Col>
+                    <Col xs={1}>
+                      <input
+                        label="Weight"
+                        type="number"
+                        value={weapon.weight}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "#ffb000",
+                          outline: "none",
+                          width: "100%",
+                          border: "none",
+                          textAlign: "center",
+                        }}
+                        onChange={(e) =>
+                          handleSheetArrayChange("weapons", idx, "weight", e)
+                        }
+                      />
+                    </Col>
+                  </Row>
+                  <hr style={{ color: "#33ff00" }} />
+                </>
+              );
+            })}
+          </Container>
+        </Row>
+        <Row>
+          <Col>Gear</Col>
+          <Col className="rowHolder">
+            <Row>
+              <Col>Tiny Items</Col>
+            </Row>
+            <Row>
+              <Col>Signature Item</Col>
+            </Row>
+          </Col>
         </Row>
       </Container>
 
       <h2>Background</h2>
-      {TextInput("Name")}
-      {TextInput("Rank")}
-      {TextInput("Career")}
-
-      {TextInput("Rival")}
       {TextAreaInput("Talents")}
       <h2>Health and Wellness</h2>
       <div>
@@ -189,110 +383,7 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
         />
       </div>
       {TextAreaInput("Critical Injuries")}
-      <h2>Skills and Attributes</h2>
-      {SkillInput("Strength")}
-      <ul>
-        <li>{AbilityInput("Close Combat")}</li>
-        <li>{AbilityInput("Heavy Machinery")}</li>
-        <li>{AbilityInput("Stamina")}</li>
-      </ul>
-      {SkillInput("Agility")}
-      <ul>
-        <li>{AbilityInput("Mobility")}</li>
-        <li>{AbilityInput("Piloting")}</li>
-        <li>{AbilityInput("Ranged Combat")}</li>
-      </ul>
-      {SkillInput("Wits")}
-      <ul>
-        <li>{AbilityInput("Comtech")}</li>
-        <li>{AbilityInput("Observation")}</li>
-        <li>{AbilityInput("Survival")}</li>
-      </ul>
-      {SkillInput("Empathy")}
-      <ul>
-        <li>{AbilityInput("Command")}</li>
-        <li>{AbilityInput("Manipulation")}</li>
-        <li>{AbilityInput("Medical Aid")}</li>
-      </ul>
-      <h2>Weapons</h2>
-      <div>
-        {sheet.weapons.map((weapon, idx) => {
-          return (
-            <div>
-              <div>
-                <label>Name: </label>
-                <input
-                  label="Name"
-                  value={weapon.name}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "name", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Bonus: </label>
-                <input
-                  label="Bonus"
-                  value={weapon.bonus}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "bonus", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Damage: </label>
-                <input
-                  label="Damage"
-                  value={weapon.damage}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "damage", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Range: </label>
-                <input
-                  label="Range"
-                  value={weapon.range}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "range", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Reloads: </label>
-                <input
-                  label="Reloads"
-                  value={weapon.reloads}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "reloads", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Notes: </label>
-                <input
-                  label="Notes"
-                  value={weapon.notes}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "notes", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Weight: </label>
-                <input
-                  label="Weight"
-                  value={weapon.weight}
-                  onChange={(e) =>
-                    handleSheetArrayChange("weapons", idx, "weight", e)
-                  }
-                />
-              </div>
-            </div>
-          );
-        })}
-      </div>
+
       <h2>Gear</h2>
       <div>
         {sheet.gear.map((gear, idx) => {

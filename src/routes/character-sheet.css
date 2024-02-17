@@ -1,0 +1,100 @@
+.sheet label {
+  color: #33ff00;
+  font-family: "Sevastopol";
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.sheet input,
+.sheet textarea {
+  font-family: "Sevastopol";
+  text-transform: uppercase;
+}
+
+.sheet .col-8,
+.sheet .col:not(.rowHolder) {
+  border: 3px double #33ff008f;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.sheet input[type="number"]::-webkit-inner-spin-button,
+.sheet input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sheet input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+
+.pink {
+  border: 3px double #f96883c4 !important;
+}
+
+.pink input {
+  color: #fc8c42 !important;
+}
+
+.pink label {
+  color: #f96883;
+}
+
+.blue {
+  border: 3px double #6868f9c4 !important;
+}
+
+.blue input {
+  color: #ca9757 !important;
+}
+
+.blue label {
+  color: #6868f9;
+}
+
+.orange {
+  border: 3px double #f98a68c4 !important;
+}
+
+.orange input {
+  color: #fc9d34 !important;
+}
+
+.orange label {
+  color: #f98a68;
+}
+
+.purple {
+  border: 3px double #bd68f9c4 !important;
+}
+
+.purple input {
+  color: #e19070 !important;
+}
+
+.purple label {
+  color: #bd68f9;
+}
+
+.weapons .col {
+  border: none !important;
+}
+
+.weaponsLabels .col-2,
+.weaponsLabels .col-3,
+.weaponsLabels .col-1,
+.weaponsLabels .col-4,
+.weaponsLabels .col {
+  border: 1px solid #33ff008f !important;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.weapons {
+  border: 3px double #33ff008f;
+  margin: 2px;
+  border-radius: 5px;
+}
