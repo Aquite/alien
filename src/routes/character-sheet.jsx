@@ -132,6 +132,7 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
             outline: "none",
             width: "100%",
             border: "none",
+            lineHeight: "24px",
           }}
           onChange={(e) => handleTextChange(id, e)}
         />
@@ -337,13 +338,70 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
           </Container>
         </Row>
         <Row>
-          <Col>Gear</Col>
+          <Col>
+            <Container style={{ textAlign: "center" }}>
+              <Row>
+                <Col xs={10}>
+                  <label>Gear Name</label>
+                </Col>
+                <Col xs={2}>
+                  <label>WT</label>
+                </Col>
+                <hr style={{ color: "#33ff00", marginBlock: "0px" }} />
+              </Row>
+
+              {sheet.gear.map((gear, idx) => {
+                return (
+                  <>
+                    <Row>
+                      <Col xs={10}>
+                        <input
+                          label="Name"
+                          value={gear.name}
+                          style={{
+                            backgroundColor: "transparent",
+                            color: "#ffb000",
+                            outline: "none",
+                            width: "100%",
+                            border: "none",
+                            textAlign: "center",
+                          }}
+                          onChange={(e) =>
+                            handleSheetArrayChange("gear", idx, "name", e)
+                          }
+                        />
+                      </Col>
+                      <Col xs={2}>
+                        <input
+                          label="Size"
+                          type="number"
+                          value={gear.size}
+                          style={{
+                            backgroundColor: "transparent",
+                            color: "#ffb000",
+                            outline: "none",
+                            width: "100%",
+                            border: "none",
+                            textAlign: "center",
+                          }}
+                          onChange={(e) =>
+                            handleSheetArrayChange("gear", idx, "size", e)
+                          }
+                        />
+                      </Col>
+                    </Row>
+                    <hr style={{ color: "#33ff00", marginBlock: "0px" }} />
+                  </>
+                );
+              })}
+            </Container>
+          </Col>
           <Col className="rowHolder">
             <Row>
-              <Col>Tiny Items</Col>
+              <Col>{TextAreaInput("Tiny Items")}</Col>
             </Row>
             <Row>
-              <Col>Signature Item</Col>
+              <Col>{TextInput("Signature Item")}</Col>
             </Row>
           </Col>
         </Row>
@@ -384,37 +442,6 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
       </div>
       {TextAreaInput("Critical Injuries")}
 
-      <h2>Gear</h2>
-      <div>
-        {sheet.gear.map((gear, idx) => {
-          return (
-            <div>
-              <div>
-                <label>Name: </label>
-                <input
-                  label="Name"
-                  value={gear.name}
-                  onChange={(e) =>
-                    handleSheetArrayChange("gear", idx, "name", e)
-                  }
-                />
-              </div>
-              <div>
-                <label>Size: </label>
-                <input
-                  label="Size"
-                  value={gear.size}
-                  onChange={(e) =>
-                    handleSheetArrayChange("gear", idx, "size", e)
-                  }
-                />
-              </div>
-            </div>
-          );
-        })}
-        {TextAreaInput("Tiny Items")}
-        {TextInput("Signature Item")}
-      </div>
       <span className="Tbutton" onClick={() => setState(sheet)}>
         Save
       </span>
