@@ -33,7 +33,7 @@ body {
   margin: 0;
   font-family: "Consolas";
   color: white;
-  font-size: calc(1em + 1vw);
+  font-size: calc(2.25em);
   margin-inline: 20px;
 }
 
