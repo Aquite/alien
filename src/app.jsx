@@ -88,7 +88,7 @@ const App = () => {
       children: [
         {
           path: "diceroll",
-          element: <DiceRoll />,
+          element: <DiceRoll sheet={sheet} setSheet={setSheet} />,
         },
         {
           path: "charsheet",

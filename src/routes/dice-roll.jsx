@@ -32,7 +32,7 @@ Dice.updateConfig({
   throwForce: 5,
 });
 
-const DiceRoll = () => {
+const DiceRoll = ({ sheet, setSheet }) => {
   const [stressResult, setStressResult] = useState();
   const [normalResult, setNormalResult] = useState();
   const [use3DDice, setUse3DDice] = useState(true);
@@ -86,13 +86,12 @@ const DiceRoll = () => {
 
   const [attribute, setAttribute] = useState(3);
   const [skill, setSkill] = useState(2);
-  const [stress, setStress] = useState(Math.floor(Math.random() * 5) + 5);
   const [mod, setMod] = useState(0);
 
   const roll = () => {
     return Math.floor(Math.random() * 6) + 1;
   };
-  const panic = roll() + stress;
+  const panic = roll() + sheet.stress;
 
   const panicResult = () => {
     if (panic >= 1 && panic <= 6) {
@@ -178,8 +177,13 @@ const DiceRoll = () => {
         <input
           type="number"
           min="0"
-          value={stress}
-          onChange={(e) => setStress(parseInt(e.target.value))}
+          value={sheet.stress}
+          onChange={(e) =>
+            setSheet((sheet) => ({
+              ...sheet,
+              stress: Number(e.target.value),
+            }))
+          }
         />
       </div>
       <div>
@@ -195,7 +199,7 @@ const DiceRoll = () => {
       <div style={{ marginTop: "40px", textAlign: "center" }}>
         <span
           className="Tbutton"
-          onClick={(e) => handleRoll(e, skill + attribute + mod, stress)}
+          onClick={(e) => handleRoll(e, skill + attribute + mod, sheet.stress)}
         >
           Roll
         </span>
