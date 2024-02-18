@@ -13,9 +13,14 @@
 }
 
 .sheet .col-8,
-.sheet .col:not(.rowHolder) {
+.sheet .col:not(.rowHolder):not(.subCol) {
   border: 3px double #33ff008f;
   margin: 2px;
+  border-radius: 5px;
+}
+
+.subCol {
+  border: 3px double #33ff008f;
   border-radius: 5px;
 }
 

@@ -94,6 +94,34 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
     );
   };
 
+  const MetricInput = (name) => {
+    const id = toCamelCase(name);
+    return (
+      <div style={{ textAlign: "center" }}>
+        <label>{name}</label>
+        <input
+          type="number"
+          label={name}
+          min="0"
+          style={{
+            fontFamily: "TGO",
+            backgroundColor: "transparent",
+            color: "#ffb000",
+            outline: "none",
+            width: "100%",
+            border: "none",
+            textAlign: "center",
+            fontSize: "8rem",
+            marginTop: "-30px",
+            marginBottom: "-10px",
+          }}
+          value={sheet[id]}
+          onChange={(e) => handleNumberChange(id, e)}
+        />
+      </div>
+    );
+  };
+
   const TextInput = (name, width) => {
     const id = toCamelCase(name);
     return (
@@ -125,6 +153,7 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
         <textarea
           label={name}
           value={sheet[id]}
+          rows={5}
           style={{
             backgroundColor: "transparent",
             color: "#ffb000",
@@ -132,7 +161,7 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
             outline: "none",
             width: "100%",
             border: "none",
-            lineHeight: "24px",
+            lineHeight: "0.8em",
           }}
           onChange={(e) => handleTextChange(id, e)}
         />
@@ -154,15 +183,21 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
         </Row>
         <Row>
           <Col>{TextAreaInput("Personal Agenda")}</Col>
-          <Col className="rowHolder">
-            <Row>
-              <Col>{TextInput("Buddy", 78)}</Col>
-            </Row>
-            <Row>
-              <Col>{TextInput("Rival", 78)}</Col>
-            </Row>
+          <Col>
+            <Row className="subCol">{TextInput("Buddy", 78)}</Row>
+            <Row className="subCol">{TextInput("Rival", 78)}</Row>
           </Col>
         </Row>
+        <Row>
+          <Col>{TextAreaInput("Talents")}</Col>
+          <Col>{TextAreaInput("Critical Injuries")}</Col>
+        </Row>
+        <Row>
+          <Col>{MetricInput("Stress")}</Col>
+          <Col>{MetricInput("Health")}</Col>
+          <Col>{MetricInput("Radiation")}</Col>
+        </Row>
+
         <Row>
           <Col className="orange">{SkillInput("Strength")}</Col>
           <Col className="purple">{SkillInput("Agility")}</Col>
@@ -396,55 +431,32 @@ const CharacterSheet = ({ sheet, setSheet, setState }) => {
               })}
             </Container>
           </Col>
-          <Col className="rowHolder">
-            <Row>
-              <Col>{TextAreaInput("Tiny Items")}</Col>
-            </Row>
-            <Row>
-              <Col>{TextInput("Signature Item")}</Col>
+          <Col>
+            <Row className="subCol">{TextAreaInput("Tiny Items")}</Row>
+            <Row className="subCol">{TextInput("Signature Item")}</Row>
+            <Row
+              style={{
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <span
+                style={{
+                  borderRadius: "15px",
+                  fontFamily: "TGO",
+                  fontSize: "5em",
+                  textTransform: "uppercase",
+                }}
+                className="Tbutton"
+                onClick={() => setState(sheet)}
+              >
+                Save
+              </span>
             </Row>
           </Col>
         </Row>
       </Container>
-
-      <h2>Background</h2>
-      {TextAreaInput("Talents")}
-      <h2>Health and Wellness</h2>
-      <div>
-        <label>Stress: </label>
-        <input
-          type="number"
-          label="Stress"
-          min="0"
-          value={sheet.stress}
-          onChange={(e) => handleNumberChange("stress", e)}
-        />
-      </div>
-      <div>
-        <label>Health: </label>
-        <input
-          type="number"
-          label="Health"
-          min="0"
-          value={sheet.health}
-          onChange={(e) => handleNumberChange("health", e)}
-        />
-      </div>
-      <div>
-        <label>Radiation: </label>
-        <input
-          type="number"
-          label="Radiation"
-          min="0"
-          value={sheet.radiation}
-          onChange={(e) => handleNumberChange("radiation", e)}
-        />
-      </div>
-      {TextAreaInput("Critical Injuries")}
-
-      <span className="Tbutton" onClick={() => setState(sheet)}>
-        Save
-      </span>
     </div>
   );
 };
