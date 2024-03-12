@@ -3,6 +3,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import DiceRoll from "./routes/dice-roll";
+import DiceRoll2d from "./routes/dice-roll-2d";
 import Rules from "./routes/rules";
 import CharacterSheet from "./routes/character-sheet";
 
@@ -89,6 +90,10 @@ const App = () => {
         {
           path: "diceroll",
           element: <DiceRoll sheet={sheet} setSheet={setSheet} />,
+        },
+        {
+          path: "diceroll2d",
+          element: <DiceRoll2d sheet={sheet} setSheet={setSheet} />,
         },
         {
           path: "charsheet",
